@@ -59,40 +59,40 @@ Plugins can include tags to help users find them. The following tags are current
 
 **Widget Type Tags** (based on entry points):
 
-| Tag | Description |
-| --- | ----------- |
-| `Bar` | Adds a widget to the bar |
-| `Desktop` | Adds a widget to the desktop |
-| `Panel` | Has a panel |
-| `Launcher` | Provides launcher results |
+| Tag        | Description                  |
+| ---------- | ---------------------------- |
+| `Bar`      | Adds a widget to the bar     |
+| `Desktop`  | Adds a widget to the desktop |
+| `Panel`    | Has a panel                  |
+| `Launcher` | Provides launcher results    |
 
 **Functional Tags** (what the plugin does):
 
-| Tag | Description |
-| --- | ----------- |
-| `AI` | AI-features, AI-tools |
-| `Audio` | Audio visualization, media |
-| `Development` | Developer tools |
-| `Fun` | Entertainment, decorative |
-| `Gaming` | Gaming-related tools |
-| `Indicator` | Status indicators |
-| `Music` | Lyrics, music related |
-| `Network` | Network monitoring |
-| `Privacy` | Privacy/security indicators |
-| `Productivity` | Notes, todos, task management |
-| `System` | System info, updates, hardware control |
-| `Theming` | Theming helper tools |
-| `Utility` | General utility tools |
+| Tag            | Description                            |
+| -------------- | -------------------------------------- |
+| `AI`           | AI-features, AI-tools                  |
+| `Audio`        | Audio visualization, media             |
+| `Development`  | Developer tools                        |
+| `Fun`          | Entertainment, decorative              |
+| `Gaming`       | Gaming-related tools                   |
+| `Indicator`    | Status indicators                      |
+| `Music`        | Lyrics, music related                  |
+| `Network`      | Network monitoring                     |
+| `Privacy`      | Privacy/security indicators            |
+| `Productivity` | Notes, todos, task management          |
+| `System`       | System info, updates, hardware control |
+| `Theming`      | Theming helper tools                   |
+| `Utility`      | General utility tools                  |
 
 **Compositor Tags** (which compositor the plugin is made for):
 
-| Tag | Description |
-| --- | ----------- |
+| Tag        | Description       |
+| ---------- | ----------------- |
 | `Hyprland` | Works on Hyprland |
-| `Labwc` | Works on Labwc |
-| `Mangowc` | Works on Mangowc |
-| `Niri` | Works on Niri |
-| `Sway` | Works on Sway |
+| `Labwc`    | Works on Labwc    |
+| `Mangowc`  | Works on Mangowc  |
+| `Niri`     | Works on Niri     |
+| `Sway`     | Works on Sway     |
 
 New tags can be added on a case-by-case basis. If your plugin doesn't fit the existing tags, feel free to propose a new one in your pull request.
 
@@ -101,6 +101,7 @@ New tags can be added on a case-by-case basis. If your plugin doesn't fit the ex
 1. **Fork this repository**
 
 2. **Create your plugin directory**
+
    ```bash
    mkdir your-plugin-name
    cd your-plugin-name
@@ -135,12 +136,11 @@ In addition to this main plugin registry, Noctalia Shell supports loading plugin
 
 This allows the community to share and use plugins outside the main registry.
 
-| Repository        | Link                                                                     |
-|-------------------|--------------------------------------------------------------------------|
-| bennypowers | [GitHub](https://github.com/bennypowers/noctalia-plugins) |
-| rukh-debug | [GitHub](https://github.com/rukh-debug/noctalia-unofficial-plugins) |
-| ajunca | [GitHub](https://github.com/ajunca/noctalia-dropdown-terminal) |
-
+| Repository  | Link                                                                |
+| ----------- | ------------------------------------------------------------------- |
+| bennypowers | [GitHub](https://github.com/bennypowers/noctalia-plugins)           |
+| rukh-debug  | [GitHub](https://github.com/rukh-debug/noctalia-unofficial-plugins) |
+| ajunca      | [GitHub](https://github.com/ajunca/noctalia-dropdown-terminal)      |
 
 ## Development
 
@@ -150,6 +150,10 @@ node .github/workflows/update-registry.js
 ```
 
 Do NOT commit registry.json in your Pull Requests as it is automatically regenerated.
+
+## AI Development
+
+AI tools should reference the following [file](./AGENTS.md)
 
 ## License
 
