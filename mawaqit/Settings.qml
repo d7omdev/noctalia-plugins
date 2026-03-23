@@ -8,10 +8,34 @@ ColumnLayout {
   property var pluginApi: null
   property var cfg: pluginApi?.pluginSettings || ({})
   property var defaults: pluginApi?.manifest?.metadata?.defaultSettings || ({})
+  property var methods: [
+    { "key": "1",  "name": "University of Islamic Sciences, Karachi" },
+    { "key": "2",  "name": "Islamic Society of North America (ISNA)" },
+    { "key": "3",  "name": "Muslim World League (MWL)" },
+    { "key": "4",  "name": "Umm Al-Qura University, Makkah" },
+    { "key": "5",  "name": "Egyptian General Authority of Survey" },
+    { "key": "7",  "name": "Institute of Geophysics, Tehran" },
+    { "key": "8",  "name": "Gulf Region" },
+    { "key": "9",  "name": "Kuwait" },
+    { "key": "10", "name": "Qatar" },
+    { "key": "11", "name": "Majlis Ugama Islam Singapura" },
+    { "key": "12", "name": "Union Organization Islamic de France" },
+    { "key": "13", "name": "Diyanet İşleri Başkanlığı, Turkey" },
+    { "key": "14", "name": "Spiritual Administration of Muslims of Russia" },
+    { "key": "15", "name": "Moonsighting Committee Worldwide" },
+    { "key": "16", "name": "Dubai (Experimental)" },
+    { "key": "19", "name": "Algeria" },
+    { "key": "99", "name": "Manual ID" }
+  ]
 
   property string valueCity:              cfg.city              ?? defaults.city              ?? "London"
   property string valueCountry:           cfg.country           ?? defaults.country           ?? "UK"
   property int    valueMethod:            cfg.method            ?? defaults.method            ?? 3
+  readonly property bool valueMethodCustom: {
+    const match = root.methods.find(m => m.key === String(root.valueMethod))
+    return !match || match.key === "99"
+  }
+  property string valueMethodCustomInput: valueMethodCustom     ? String(root.valueMethod)         : ""
   property int    valueSchool:            cfg.school            ?? defaults.school            ?? 0
   property bool   valueShowCountdown:     cfg.showCountdown     ?? defaults.showCountdown     ?? true
   property bool   valueShowNotifications: cfg.showNotifications ?? defaults.showNotifications ?? true
@@ -53,26 +77,27 @@ ColumnLayout {
     Layout.fillWidth: true
     label: pluginApi?.tr("settings.method.label")
     description: pluginApi?.tr("settings.method.desc")
-    currentKey: String(root.valueMethod)
-    model: [
-      { "key": "1",  "name": "University of Islamic Sciences, Karachi" },
-      { "key": "2",  "name": "Islamic Society of North America (ISNA)" },
-      { "key": "3",  "name": "Muslim World League (MWL)" },
-      { "key": "4",  "name": "Umm Al-Qura University, Makkah" },
-      { "key": "5",  "name": "Egyptian General Authority of Survey" },
-      { "key": "7",  "name": "Institute of Geophysics, Tehran" },
-      { "key": "8",  "name": "Gulf Region" },
-      { "key": "9",  "name": "Kuwait" },
-      { "key": "10", "name": "Qatar" },
-      { "key": "11", "name": "Majlis Ugama Islam Singapura" },
-      { "key": "12", "name": "Union Organization Islamic de France" },
-      { "key": "13", "name": "Diyanet İşleri Başkanlığı, Turkey" },
-      { "key": "14", "name": "Spiritual Administration of Muslims of Russia" },
-      { "key": "15", "name": "Moonsighting Committee Worldwide" },
-      { "key": "16", "name": "Dubai (Experimental)" }
-    ]
-    onSelected: key => root.valueMethod = parseInt(key)
+    currentKey: valueMethodCustom ? 99 : String(root.valueMethod)
+    model: root.methods
+    onSelected: key => {
+      root.valueMethod = parseInt(key)
+    }
   }
+
+  NTextInput {
+    Layout.fillWidth: true
+    visible: root.valueMethodCustom
+    label: pluginApi?.tr("settings.methodCustom.label")
+    description: pluginApi?.tr("settings.methodCustom.desc")
+    placeholderText: "e.g. 19"
+    text: root.valueMethodCustomInput
+    onTextChanged: {
+      root.valueMethodCustomInput = text
+      const n = parseInt(text)
+      if (!isNaN(n) && n > 0) root.valueMethod = n
+    }
+  }
+
 
   NComboBox {
     Layout.fillWidth: true

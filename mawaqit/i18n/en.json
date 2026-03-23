@@ -101,6 +101,10 @@
     "weekStartDay": {
       "label": "First day of week",
       "desc": "Choose which day starts the calendar week."
+    },
+    "methodCustom": {
+      "label": "Custom Method ID",
+      "desc": "Enter the numeric method ID from the Aladhan API (e.g. 19 for Algeria / MESRS)."
     }
   },
   "error": {
