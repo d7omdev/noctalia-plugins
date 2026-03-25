@@ -178,7 +178,8 @@ Item {
       args.push("--hidden");
     }
     
-    args.push("--type", "f");  // Files only
+    args.push("--type", "f");
+    args.push("--type", "d");
     if (maxResults > 0) {
       args.push("--max-results", maxResults.toString());
     }
@@ -200,7 +201,7 @@ Item {
 
     if (lines.length === 0 || (lines.length === 1 && lines[0] === "")) {
       results.push({
-        "name": "No files found",
+        "name": "No results found",
         "description": "No files matching '" + currentQuery + "'",
         "icon": "file-off",
         "isTablerIcon": true,
@@ -223,9 +224,19 @@ Item {
   }
 
   function formatFileEntry(filePath) {
-    var parts = filePath.split("/");
+    var normalizedPath = filePath;
+    while (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
+      normalizedPath = normalizedPath.slice(0, -1);
+    }
+
+    var isDirectory = normalizedPath !== filePath;
+    var parts = normalizedPath.split("/");
     var filename = parts[parts.length - 1];
     var parentPath = parts.slice(0, -1).join("/");
+
+    if (filename === "") {
+      filename = normalizedPath;
+    }
     
     var homeDir = Quickshell.env("HOME");
     if (parentPath.startsWith(homeDir)) {
@@ -235,12 +246,12 @@ Item {
     return {
       "name": filename,
       "description": parentPath,
-      "icon": getFileIcon(filename),
+      "icon": isDirectory ? "folder" : getFileIcon(filename),
       "isTablerIcon": true,
       "isImage": false,
       "singleLine": false,
       "onActivate": function() {
-        root.openFile(filePath);
+        root.openFile(normalizedPath);
       }
     };
   }
