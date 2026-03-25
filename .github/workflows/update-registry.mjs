@@ -9,7 +9,11 @@
 
 import { execSync } from 'child_process'
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'fs'
-import { join, __dirname } from 'path'
+import { dirname, join, resolve } from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const REGISTRY_VERSION = 1;
 const ROOT_DIR = join(__dirname, '..', '..');
@@ -143,14 +147,16 @@ function main() {
   console.log(`Total Plugins: ${registry.plugins.length}`);
 }
 
-// Run the script
-if (require.main === module) {
+// Run the script when executed directly (not when imported)
+const isMain =
+  process.argv[1] && resolve(process.argv[1]) === resolve(__filename)
+if (isMain) {
   try {
-    main();
+    main()
   } catch (error) {
-    console.error('Error updating registry:', error);
-    process.exit(1);
+    console.error('Error updating registry:', error)
+    process.exit(1)
   }
 }
 
-module.exports = { scanPlugins, generateRegistry, extractRegistryEntry };
+export { scanPlugins, generateRegistry, extractRegistryEntry }
