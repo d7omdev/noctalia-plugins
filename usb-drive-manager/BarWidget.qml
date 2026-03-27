@@ -19,6 +19,7 @@ NIconButton {
     readonly property int totalDevices: mainInstance?.devices?.length ?? 0
     readonly property bool hasDevices: totalDevices > 0
     readonly property bool hasMountedDevices: mountedCount > 0
+
     readonly property bool showBadge:
         pluginApi?.pluginSettings?.showBadge ??
         pluginApi?.manifest?.metadata?.defaultSettings?.showBadge ??
@@ -38,20 +39,11 @@ NIconButton {
     readonly property color iconColor: Color.resolveColorKey(iconColorKey)
 
     // ===== VISIBILITY =====
-    visible: true
-    opacity: shouldShow ? 1.0 : 0.0
-    implicitWidth: shouldShow ? baseSize : 0
-
-    Behavior on opacity {
-        NumberAnimation { duration: Style.animationNormal }
-    }
-    Behavior on implicitWidth {
-        NumberAnimation { duration: Style.animationNormal }
-    }
+    visible: shouldShow
 
     // ===== APPEARANCE =====
-    icon: hasDevices ? "usb" : "usb"
-    tooltipText: mainInstance?.buildTooltip() || (pluginApi?.tr("bar.tooltip-empty") || "No USB devices")
+    icon: "usb"
+    tooltipText: mainInstance?.buildTooltip() || pluginApi?.tr("bar.tooltip-empty")
     tooltipDirection: BarService.getTooltipDirection(screen?.name)
     baseSize: Style.getCapsuleHeightForScreen(screen?.name)
     applyUiScale: false
@@ -67,7 +59,6 @@ NIconButton {
     border.color: Style.capsuleBorderColor
     border.width: Style.capsuleBorderWidth
 
-    // Badge showing device count
     Rectangle {
         visible: hasMountedDevices && showBadge
         anchors.top: parent.top
@@ -92,7 +83,6 @@ NIconButton {
 
     // ===== INTERACTIONS =====
     onClicked: {
-        // Always refresh device list when user opens the panel
         if (mainInstance) {
             mainInstance.refreshDevices()
         }
@@ -111,22 +101,22 @@ NIconButton {
 
         model: [
             {
-                "label": pluginApi?.tr("context.open") || "Open USB Manager",
+                "label": pluginApi?.tr("context.open"),
                 "action": "open-panel",
                 "icon": "apps"
             },
             {
-                "label": pluginApi?.tr("context.refresh") || "Refresh Devices",
+                "label": pluginApi?.tr("context.refresh"),
                 "action": "refresh",
                 "icon": "refresh"
             },
             {
-                "label": pluginApi?.tr("context.unmount-all") || "Unmount All",
+                "label": pluginApi?.tr("context.unmount-all"),
                 "action": "unmount-all",
                 "icon": "plug-connected-x"
             },
             {
-                "label": pluginApi?.tr("context.settings") || "Settings",
+                "label": pluginApi?.tr("context.settings"),
                 "action": "settings",
                 "icon": "settings"
             }

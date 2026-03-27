@@ -1,7 +1,5 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
-import Quickshell
 import qs.Commons
 import qs.Widgets
 
@@ -62,73 +60,31 @@ ColumnLayout {
 
     // ── Section: Bar Widget ───────────────────────────────────────────────────
     NText {
-        text: pluginApi?.tr("settings.section-bar") || "Bar Widget"
+        text: pluginApi?.tr("settings.section-bar")
         pointSize: Style.fontSizeM
         font.weight: Font.Bold
         color: Color.mOnSurface
     }
 
-    // Hide when empty
-    RowLayout {
+    NToggle {
         Layout.fillWidth: true
-        spacing: Style.marginM
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 2
-
-            NText {
-                text: pluginApi?.tr("settings.hide-when-empty") || "Hide when no devices"
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurface
-            }
-            NText {
-                text: pluginApi?.tr("settings.hide-when-empty-desc") || "Hide the bar icon when no USB devices are connected"
-                pointSize: Style.fontSizeXS
-                color: Color.mOnSurfaceVariant
-                wrapMode: Text.WordWrap
-                Layout.fillWidth: true
-            }
-        }
-
-        NToggle {
-            checked: root.editHideWhenEmpty
-            onToggled: checked => {
-                root.editHideWhenEmpty = checked
-                root.saveSettings()
-            }
+        label: pluginApi?.tr("settings.hide-when-empty")
+        description: pluginApi?.tr("settings.hide-when-empty-desc")
+        checked: root.editHideWhenEmpty
+        onToggled: checked => {
+            root.editHideWhenEmpty = checked
+            root.saveSettings()
         }
     }
 
-    // Show badge
-    RowLayout {
+    NToggle {
         Layout.fillWidth: true
-        spacing: Style.marginM
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 2
-
-            NText {
-                text: "Show count badge"
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurface
-            }
-            NText {
-                text: "Show the number of mounted devices as a badge on the icon"
-                pointSize: Style.fontSizeXS
-                color: Color.mOnSurfaceVariant
-                wrapMode: Text.WordWrap
-                Layout.fillWidth: true
-            }
-        }
-
-        NToggle {
-            checked: root.editShowBadge
-            onToggled: checked => {
-                root.editShowBadge = checked
-                root.saveSettings()
-            }
+        label: pluginApi?.tr("settings.show-badge")
+        description: pluginApi?.tr("settings.show-badge-desc")
+        checked: root.editShowBadge
+        onToggled: checked => {
+            root.editShowBadge = checked
+            root.saveSettings()
         }
     }
 
@@ -136,75 +92,31 @@ ColumnLayout {
 
     // ── Section: Behavior ─────────────────────────────────────────────────────
     NText {
-        text: pluginApi?.tr("settings.section-behavior") || "Behavior"
+        text: pluginApi?.tr("settings.section-behavior")
         pointSize: Style.fontSizeM
         font.weight: Font.Bold
         color: Color.mOnSurface
     }
 
-    // Auto-mount
-    RowLayout {
+    NToggle {
         Layout.fillWidth: true
-        spacing: Style.marginM
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 2
-
-            NText {
-                text: pluginApi?.tr("settings.auto-mount") || "Auto-mount"
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurface
-            }
-            NText {
-                text: pluginApi?.tr("settings.auto-mount-desc") || "Automatically mount USB drives when plugged in"
-                pointSize: Style.fontSizeXS
-                color: Color.mOnSurfaceVariant
-                wrapMode: Text.WordWrap
-                Layout.fillWidth: true
-            }
-        }
-
-        NToggle {
-            checked: root.editAutoMount
-            onToggled: checked => {
-                root.editAutoMount = checked
-                root.saveSettings()
-            }
+        label: pluginApi?.tr("settings.auto-mount")
+        description: pluginApi?.tr("settings.auto-mount-desc")
+        checked: root.editAutoMount
+        onToggled: checked => {
+            root.editAutoMount = checked
+            root.saveSettings()
         }
     }
 
-    NDivider { Layout.fillWidth: true }
-
-    // Show notifications
-    RowLayout {
+    NToggle {
         Layout.fillWidth: true
-        spacing: Style.marginM
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 2
-
-            NText {
-                text: pluginApi?.tr("settings.notifications") || "Notifications"
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurface
-            }
-            NText {
-                text: pluginApi?.tr("settings.notifications-desc") || "Show toast notifications for mount/unmount/eject events"
-                pointSize: Style.fontSizeXS
-                color: Color.mOnSurfaceVariant
-                wrapMode: Text.WordWrap
-                Layout.fillWidth: true
-            }
-        }
-
-        NToggle {
-            checked: root.editShowNotifications
-            onToggled: checked => {
-                root.editShowNotifications = checked
-                root.saveSettings()
-            }
+        label: pluginApi?.tr("settings.notifications")
+        description: pluginApi?.tr("settings.notifications-desc")
+        checked: root.editShowNotifications
+        onToggled: checked => {
+            root.editShowNotifications = checked
+            root.saveSettings()
         }
     }
 
@@ -212,142 +124,46 @@ ColumnLayout {
 
     // ── Section: File Browser ─────────────────────────────────────────────────
     NText {
-        text: pluginApi?.tr("settings.section-browser") || "File Browser"
+        text: pluginApi?.tr("settings.section-browser")
         pointSize: Style.fontSizeM
         font.weight: Font.Bold
         color: Color.mOnSurface
     }
 
-    NText {
-        text: pluginApi?.tr("settings.file-browser") || "File browser command"
-        pointSize: Style.fontSizeS
-        color: Color.mOnSurface
-    }
-    NText {
-        text: pluginApi?.tr("settings.file-browser-desc") || "Command to open files (yazi, ranger, xdg-open, dolphin, thunar, nautilus)"
-        pointSize: Style.fontSizeXS
-        color: Color.mOnSurfaceVariant
-        wrapMode: Text.WordWrap
+    NComboBox {
         Layout.fillWidth: true
-    }
-
-    // File browser presets
-    RowLayout {
-        Layout.fillWidth: true
-        spacing: Style.marginXS
-
-        Repeater {
-            model: ["yazi", "ranger", "xdg-open", "dolphin", "thunar", "nautilus"]
-
-            delegate: NButton {
-                text: modelData
-                enabled: root.editFileBrowser !== modelData
-                onClicked: {
-                    root.editFileBrowser = modelData
-                    root.saveSettings()
-                }
-            }
-        }
-    }
-
-    NText {
-        text: (pluginApi?.tr("settings.current-browser") || "Current:") + " " + root.editFileBrowser
-        pointSize: Style.fontSizeXS
-        color: Color.mPrimary
-        font.weight: Font.Medium
-    }
-
-    NDivider { Layout.fillWidth: true }
-
-    // Terminal command
-    NText {
-        text: pluginApi?.tr("settings.terminal") || "Terminal emulator"
-        pointSize: Style.fontSizeS
-        color: Color.mOnSurface
-    }
-    NText {
-        text: pluginApi?.tr("settings.terminal-desc") || "Terminal used for terminal file managers (yazi, ranger, etc.)"
-        pointSize: Style.fontSizeXS
-        color: Color.mOnSurfaceVariant
-        wrapMode: Text.WordWrap
-        Layout.fillWidth: true
-    }
-
-    // Terminal presets
-    RowLayout {
-        Layout.fillWidth: true
-        spacing: Style.marginXS
-
-        Repeater {
-            model: ["kitty", "foot", "alacritty", "wezterm", "ghostty"]
-
-            delegate: NButton {
-                text: modelData
-                enabled: root.editTerminalCommand !== modelData
-                onClicked: {
-                    root.editTerminalCommand = modelData
-                    root.saveSettings()
-                }
-            }
-        }
-    }
-
-    NText {
-        text: (pluginApi?.tr("settings.current-terminal") || "Current:") + " " + root.editTerminalCommand
-        pointSize: Style.fontSizeXS
-        color: Color.mPrimary
-        font.weight: Font.Medium
-    }
-
-    NDivider { Layout.fillWidth: true }
-
-    // ── Section: System Requirements ──────────────────────────────────────────
-    NText {
-        text: pluginApi?.tr("settings.section-requirements") || "System Requirements"
-        pointSize: Style.fontSizeM
-        font.weight: Font.Bold
-        color: Color.mOnSurface
-    }
-
-    NText {
-        Layout.fillWidth: true
-        text: pluginApi?.tr("settings.requirements-desc") || "The following tools must be installed:"
-        pointSize: Style.fontSizeS
-        color: Color.mOnSurfaceVariant
-        wrapMode: Text.WordWrap
-    }
-
-    Repeater {
+        label: pluginApi?.tr("settings.file-browser")
+        description: pluginApi?.tr("settings.file-browser-desc")
         model: [
-            { cmd: "udisksctl", pkg: "sys-fs/udisks" },
-            { cmd: "udevadm",   pkg: "sys-fs/eudev or sys-apps/systemd-utils" },
-            { cmd: "lsblk",     pkg: "sys-apps/util-linux" }
+            { key: "yazi",     name: "yazi" },
+            { key: "ranger",   name: "ranger" },
+            { key: "xdg-open", name: "xdg-open" },
+            { key: "dolphin",  name: "dolphin" },
+            { key: "thunar",   name: "thunar" },
+            { key: "nautilus", name: "nautilus" }
         ]
+        currentKey: root.editFileBrowser
+        onSelected: key => {
+            root.editFileBrowser = key
+            root.saveSettings()
+        }
+    }
 
-        delegate: RowLayout {
-            Layout.fillWidth: true
-            spacing: Style.marginS
-
-            NText {
-                text: "•"
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurfaceVariant
-            }
-
-            NText {
-                text: modelData.cmd
-                pointSize: Style.fontSizeS
-                color: Color.mOnSurface
-                font.weight: Font.Medium
-            }
-
-            NText {
-                Layout.fillWidth: true
-                text: "(" + modelData.pkg + ")"
-                pointSize: Style.fontSizeXS
-                color: Color.mOnSurfaceVariant
-                elide: Text.ElideRight
-            }
+    NComboBox {
+        Layout.fillWidth: true
+        label: pluginApi?.tr("settings.terminal")
+        description: pluginApi?.tr("settings.terminal-desc")
+        model: [
+            { key: "kitty",      name: "kitty" },
+            { key: "foot",       name: "foot" },
+            { key: "alacritty",  name: "alacritty" },
+            { key: "wezterm",    name: "wezterm" },
+            { key: "ghostty",    name: "ghostty" }
+        ]
+        currentKey: root.editTerminalCommand
+        onSelected: key => {
+            root.editTerminalCommand = key
+            root.saveSettings()
         }
     }
 

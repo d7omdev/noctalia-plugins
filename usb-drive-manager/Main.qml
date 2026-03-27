@@ -8,19 +8,6 @@ Item {
     id: root
 
     property var pluginApi: null
-
-    // ===== PUBLIC STATE =====
-
-    // List of detected USB device objects:
-    // {
-    //   name: "sdb1",           path: "/dev/sdb1",
-    //   parentPath: "/dev/sdb", label: "KINGSTON",
-    //   size: "32G",            fstype: "vfat",
-    //   mountpoint: "/run/media/user/KINGSTON",
-    //   isMounted: true,        model: "DataTraveler 3.0",
-    //   vendor: "Kingston",     usedPercent: 0,
-    //   usedSize: "",           freeSize: ""
-    // }
     property var devices: []
     property bool loading: false
 
@@ -371,7 +358,7 @@ Item {
         const browser = root.fileBrowser || "yazi"
         if (browser === "yazi" || browser === "ranger" || browser === "lf" || browser === "nnn") {
             // Terminal file managers need a terminal emulator
-            const term = root.terminalCommand || "kitty"
+                const term = root.terminalCommand || "kitty"
             Quickshell.execDetached([term, "-e", browser, mountpoint])
         } else {
             Quickshell.execDetached([browser, mountpoint])

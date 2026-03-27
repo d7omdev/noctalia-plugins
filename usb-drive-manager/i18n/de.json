@@ -43,6 +43,8 @@
     "section-bar": "Bar-Widget",
     "hide-when-empty": "Ausblenden wenn leer",
     "hide-when-empty-desc": "Bar-Icon ausblenden, wenn keine USB-Geräte angeschlossen sind",
+    "show-badge": "Zähler-Badge anzeigen",
+    "show-badge-desc": "Anzahl der eingehängten Geräte als Badge am Bar-Icon anzeigen",
     "icon-color": "Icon-Farbe",
     "icon-color-desc": "Benutzerdefinierte Icon-Farbe (leer lassen für Standard)",
     "section-behavior": "Verhalten",
@@ -51,10 +53,9 @@
     "notifications": "Benachrichtigungen",
     "notifications-desc": "Toast-Benachrichtigungen bei Einhänge-/Aushänge-/Auswurf-Ereignissen anzeigen",
     "section-browser": "Dateimanager",
-    "file-browser": "Dateimanager-Befehl",
-    "file-browser-desc": "Befehl zum Öffnen des Dateimanagers (z.B. yazi, ranger, xdg-open, dolphin, thunar, nautilus)",
-    "presets": "Voreinstellungen:",
-    "section-requirements": "Systemvoraussetzungen",
-    "requirements-desc": "Folgende Tools müssen installiert sein:"
+    "file-browser": "Dateimanager",
+    "file-browser-desc": "Befehl zum Öffnen des Dateimanagers (z.B. yazi, ranger, xdg-open, dolphin)",
+    "terminal": "Terminal-Emulator",
+    "terminal-desc": "Terminal für terminal-basierte Dateimanager (yazi, ranger, etc.)"
   }
 }

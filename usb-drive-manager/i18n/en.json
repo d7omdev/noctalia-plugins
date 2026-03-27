@@ -43,6 +43,8 @@
     "section-bar": "Bar Widget",
     "hide-when-empty": "Hide when no devices",
     "hide-when-empty-desc": "Hide the bar icon when no USB devices are connected",
+    "show-badge": "Show count badge",
+    "show-badge-desc": "Show the number of mounted devices as a badge on the bar icon",
     "icon-color": "Icon color",
     "icon-color-desc": "Custom icon color (leave as 'none' for default)",
     "section-behavior": "Behavior",
@@ -51,10 +53,9 @@
     "notifications": "Notifications",
     "notifications-desc": "Show toast notifications for mount/unmount/eject events",
     "section-browser": "File Browser",
-    "file-browser": "File browser command",
-    "file-browser-desc": "Command used to open the file browser (e.g. xdg-open, dolphin, thunar, nautilus)",
-    "presets": "Presets:",
-    "section-requirements": "System Requirements",
-    "requirements-desc": "The following tools must be installed:"
+    "file-browser": "File browser",
+    "file-browser-desc": "Command used to open the file browser (e.g. yazi, ranger, xdg-open, dolphin)",
+    "terminal": "Terminal emulator",
+    "terminal-desc": "Terminal used to open terminal-based file managers (yazi, ranger, etc.)"
   }
 }
