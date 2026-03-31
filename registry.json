@@ -1248,6 +1248,23 @@
       "lastUpdated": "2026-03-29T19:05:12-04:00"
     },
     {
+      "id": "usb-drive-manager",
+      "name": "USB Drive Manager",
+      "version": "1.0.0",
+      "official": false,
+      "author": "hennifant",
+      "description": "Manage USB drives: detect, mount, unmount, safely eject, and browse files",
+      "repository": "https://github.com/noctalia-dev/noctalia-plugins",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "tags": [
+        "Bar",
+        "Panel",
+        "Utility"
+      ],
+      "lastUpdated": "2026-03-31T11:11:13+02:00"
+    },
+    {
       "id": "valent-connect",
       "name": "Valent Connect",
       "version": "1.2.1",
