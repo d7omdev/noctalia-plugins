@@ -297,7 +297,7 @@ Item {
     const toD   = new Date(today); toD.setDate(toD.getDate() + 6)
     const to    = Qt.formatDate(toD, "dd-MM-yyyy")
     const methodSettings = `${fajrAngle !== null ? fajrAngle : 'null'},null,${ishaAngle !== null ? ishaAngle : 'null'}`
-    const url   = `https://api.aladhan.com/v1/timingsByCity/${from}?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}&methodSettings=${methodSettings}&school=${school}&days=7`
+    const url   = `https://api.aladhan.com/v1/timingsByCity/${from}?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}&methodSettings=${methodSettings}&school=${school}&days=7&tune=${encodeURIComponent(tuneParam)}`
     Logger.d("Mawaqit", "Fetching week from", from, "to", to)
 
     const xhr = new XMLHttpRequest()
@@ -344,7 +344,7 @@ Item {
   function fetchSingleDay() {
     if (_xhr) return
     const methodSettings = `${fajrAngle !== null ? fajrAngle : 'null'},null,${ishaAngle !== null ? ishaAngle : 'null'}`
-    const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}&methodSettings=${methodSettings}&school=${school}`
+    const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${method}&methodSettings=${methodSettings}&school=${school}&tune=${encodeURIComponent(tuneParam)}`
     const xhr = new XMLHttpRequest()
     _xhr = xhr
     xhr.onreadystatechange = function() {
