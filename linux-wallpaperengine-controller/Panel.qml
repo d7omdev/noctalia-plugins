@@ -677,9 +677,9 @@ Item {
           implicitHeight: errorBannerContent.implicitHeight + Style.marginS * 2
           Layout.preferredHeight: implicitHeight
           radius: Style.radiusM
-          color: Qt.alpha(Color.mErrorContainer, 0.9)
+          color: Color.mSurface
           border.width: Style.borderS
-          border.color: Qt.alpha(Color.mError, 0.62)
+          border.color: Qt.alpha(Color.mOutline, 0.2)
 
           ColumnLayout {
             id: errorBannerContent
@@ -702,7 +702,7 @@ Item {
 
               NText {
                 text: pluginApi?.tr("panel.errorBannerTitle")
-                color: Color.mError
+                color: Color.mOnSurface
                 font.weight: Font.Bold
               }
 
@@ -733,7 +733,7 @@ Item {
             NText {
               Layout.fillWidth: true
               text: mainInstance?.lastError
-              color: Color.mError
+              color: Color.mOnSurface
               wrapMode: Text.WordWrap
               maximumLineCount: 2
               elide: Text.ElideRight
@@ -744,9 +744,9 @@ Item {
               Layout.fillWidth: true
               Layout.preferredHeight: 136 * Style.uiScaleRatio
               radius: Style.radiusS
-              color: Qt.alpha(Color.mSurface, 0.55)
+              color: Qt.alpha(Color.mSurfaceVariant, 0.35)
               border.width: Style.borderS
-              border.color: Qt.alpha(Color.mOutline, 0.35)
+              border.color: Qt.alpha(Color.mOutline, 0.25)
 
               NScrollView {
                 anchors.fill: parent
