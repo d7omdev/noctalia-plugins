@@ -72,7 +72,7 @@ jobs:
           function check_file_title() {
             if [ "$title_added" = false ]; then
               title_added=true
-              comment_body+="$file_title"
+              comment_body+="$(printf -- '\n---\n### File: %s' "$file_title")"
             fi
           }
 
@@ -231,24 +231,24 @@ jobs:
               reset_required_properties
 
               title_added=false
-              file_title=$(printf -- '\n---\n### File: %s' "$(echo "$line" | sed 's/diff --git a\/\(.*\.qml\) .*/\1/g')")
+              file_title=$(echo "$line" | sed 's/diff --git a\/\(.*\.qml\) .*/\1/g')
               echo "Checking file: $file_title"
 
-              if [[ "$file_title" == BarWidget.qml ]]; then
+              if [ "$file_title" = "BarWidget.qml" ]; then
                 inBarWidget=true
-              elif [[ "$file_title" == DesktopWidget.qml ]]; then
+              elif [ "$file_title" = "DesktopWidget.qml" ]; then
                 inDesktopWidget=true
-              elif [[ "$file_title" == DesktopWidgetSettings.qml ]]; then
+              elif [ "$file_title" = "DesktopWidgetSettings.qml" ]; then
                 inDesktopWidgetSettings=true
-              elif [[ "$file_title" == ControlCenterWidget.qml ]]; then
+              elif [ "$file_title" = "ControlCenterWidget.qml" ]; then
                 inControlCenterWidget=true
-              elif [[ "$file_title" == LauncherProvider.qml ]]; then
+              elif [ "$file_title" = "LauncherProvider.qml" ]; then
                 inLauncherProvider=true
-              elif [[ "$file_title" == Main.qml ]]; then
+              elif [ "$file_title" = "Main.qml" ]; then
                 inMain=true
-              elif [[ "$file_title" == Panel.qml ]]; then
+              elif [ "$file_title" = "Panel.qml" ]; then
                 inPanel=true
-              elif [[ "$file_title" == Settings.qml ]]; then
+              elif [ "$file_title" = "Settings.qml" ]; then
                 inSettings=true
               fi
             elif echo "$line" | grep -E "^@@" >/dev/null; then
