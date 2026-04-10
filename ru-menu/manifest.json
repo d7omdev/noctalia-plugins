@@ -1,0 +1,20 @@
+{
+  "id": "ru-menu",
+  "name": "RU Menu",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "Kermut572",
+  "license": "MIT",
+  "repository": "https://github.com/Kermut572/noctalia-plugins",
+  "description": "A simple plugin that fetches the current, past, and future weeks menu for UCLouvain's Restaurants Universitaires",
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {}
+  }
+}
