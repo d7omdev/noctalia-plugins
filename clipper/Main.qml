@@ -403,7 +403,6 @@ Item {
     const newNote = {
       id: noteId,
       title: "",
-      isPrivate: false,
       content: initialText || "",
       x: baseX,
       y: baseY,
