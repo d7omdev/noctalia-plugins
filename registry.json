@@ -634,7 +634,7 @@
     {
       "id": "latency-monitor",
       "name": "Latency Monitor",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "official": false,
       "author": "Borhaneddine GUEMIDI <guemidiborhane@gmail.com>",
       "description": "Network latency monitor — multi-host, windowed averages, sparkline graphs",
@@ -646,7 +646,7 @@
         "Panel",
         "Network"
       ],
-      "lastUpdated": "2026-04-05T22:01:32+01:00"
+      "lastUpdated": "2026-04-21T09:53:34+01:00"
     },
     {
       "id": "linux-wallpaperengine-controller",
