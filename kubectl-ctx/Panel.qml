@@ -27,11 +27,19 @@ Item {
 
   property string nsFilterText: ""
   property int nsHighlightIndex: 0
+  property bool nsListHovered: false
+  property var nsFilteredListCache: []
 
   readonly property var nsFilteredList: {
     var all = main?.namespaces ?? [];
     var q = root.nsFilterText.toLowerCase();
     return q === "" ? all : all.filter(n => n.toLowerCase().includes(q));
+  }
+
+  onNsFilteredListChanged: {
+    if (!root.nsListHovered) {
+      root.nsFilteredListCache = root.nsFilteredList;
+    }
   }
 
   function nsSelectHighlighted() {
@@ -292,6 +300,7 @@ Item {
                 onClicked: {
                   nsDropdown.visible = !nsDropdown.visible;
                   if (nsDropdown.visible) {
+                    root.nsFilteredListCache = root.nsFilteredList;
                     Qt.callLater(function() {
                       if (nsSearchInput.inputItem) nsSearchInput.inputItem.forceActiveFocus();
                     });
@@ -340,7 +349,7 @@ Item {
                   id: nsListScroll
                   Layout.fillWidth: true
                   Layout.preferredHeight: {
-                    var filtered = root.nsFilteredList;
+                    var filtered = root.nsFilteredListCache;
                     var count = filtered.length;
                     if (count === 0) return Math.round(32 * Style.uiScaleRatio);
                     var rowH = nsListColumn.children.length > 0
@@ -349,7 +358,11 @@ Item {
                     return Math.min(count, 4) * rowH;
                   }
                   horizontalPolicy: ScrollBar.AlwaysOff
-                  verticalPolicy: root.nsFilteredList.length > 4 ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
+                  verticalPolicy: root.nsFilteredListCache.length > 4 ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
+
+                  HoverHandler {
+                    onHoveredChanged: root.nsListHovered = hovered
+                  }
 
                   ColumnLayout {
                     id: nsListColumn
@@ -357,7 +370,7 @@ Item {
                     spacing: 0
 
                     Repeater {
-                      model: root.nsFilteredList
+                      model: root.nsFilteredListCache
                       delegate: ContextRow {
                         required property string modelData
                         required property int index
@@ -375,7 +388,7 @@ Item {
                     }
 
                     NText {
-                      visible: root.nsFilteredList.length === 0
+                      visible: root.nsFilteredListCache.length === 0
                       text: pluginApi?.tr("panel.noNamespaces")
                       pointSize: Style.fontSizeS
                       color: Color.mOnSurfaceVariant
