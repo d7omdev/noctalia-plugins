@@ -13,15 +13,15 @@ function getTooltipRows(weather, tooltipOption, useFahrenheit, use12h, tr, Locat
     const f = (t) => formatTemp(t, useFahrenheit, true, LocationService);
 
     if (tooltipOption === "everything") {
-        rows.push([tr("Current"), f(weather.current_weather.temperature)]);
+        rows.push([tr("tooltips.current"), f(weather.current_weather.temperature)]);
     }
     if (tooltipOption === "everything" || tooltipOption === "highlow") {
-        rows.push([tr("High"), f(weather.daily.temperature_2m_max[0])]);
-        rows.push([tr("Low"), f(weather.daily.temperature_2m_min[0])]);
+        rows.push([tr("tooltips.high"), f(weather.daily.temperature_2m_max[0])]);
+        rows.push([tr("tooltips.low"), f(weather.daily.temperature_2m_min[0])]);
     }
     if (tooltipOption === "everything" || tooltipOption === "sunrise") {
-        rows.push([tr("Sunrise"), I18n.locale.toString(new Date(weather.daily.sunrise[0]), fmt)]);
-        rows.push([tr("Sunset"), I18n.locale.toString(new Date(weather.daily.sunset[0]), fmt)]);
+        rows.push([tr("tooltips.sunrise"), I18n.locale.toString(new Date(weather.daily.sunrise[0]), fmt)]);
+        rows.push([tr("tooltips.sunset"), I18n.locale.toString(new Date(weather.daily.sunset[0]), fmt)]);
     }
     return rows;
 }
