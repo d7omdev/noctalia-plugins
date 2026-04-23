@@ -150,10 +150,10 @@ Item {
                 }
 
                 var lines = output.split("\n")
-                var names = []
-                var oldVers = []
-                var newVers = []
-                var rows = []
+                var names = root.nameStr.split("\n")
+                var oldVers = root.oldVerStr.split("\n")
+                var newVers = root.newVerStr.split("\n")
+                var rows = root.updates
 
                 for (var i = 0; i < lines.length; i++) {
                     var parts = lines[i].split(/\s+/)
